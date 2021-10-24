@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:sanlater/component/signup_button.dart';
 import 'package:sanlater/component/text_field.dart';
+import 'package:sanlater/ui/screens/get-started.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -16,6 +17,8 @@ class _RegisterState extends State<Register> {
   bool showSpinner = false;
   // bool variable to hide or show password
   bool _isHidden = true;
+
+  bool isChecked = false;
   // hide or show password function
   void togglePasswordVisibility() => setState(() => _isHidden = !_isHidden);
   // form key for user input validation
@@ -23,6 +26,9 @@ class _RegisterState extends State<Register> {
   //text controllers
   TextEditingController password = TextEditingController();
   TextEditingController email = TextEditingController();
+  TextEditingController firstName = TextEditingController();
+  TextEditingController lastName = TextEditingController();
+  TextEditingController confirmPassword = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return ModalProgressHUD(
@@ -76,138 +82,139 @@ class _RegisterState extends State<Register> {
                     child: Form(
                       key: _globalKey,
                       child: SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Text('First name '),
-                            InputField(
-                              obscureText: false,
-                              hintText: 'Bash',
-                              // label: 'E-mail',
-                              inputType: TextInputType.name,
-                              controller: email,
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return '';
-                                }
-                                return null;
-                              },
-                              suffixIcon: Text(''),
-                            ),
-                            Text('Last name'),
-                            InputField(
-                              obscureText: false,
-                              hintText: 'Adebayo',
-                              inputType: TextInputType.name,
-                              controller: email,
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return '';
-                                }
-                                return null;
-                              },
-                              suffixIcon: Text(''),
-                            ),
-                            Text('Email'),
-                            InputField(
-                              obscureText: false,
-                              hintText: 'kamushken@gmail.com',
-                              // label: 'E-mail',
-                              inputType: TextInputType.emailAddress,
-                              controller: email,
-                              validator: (value) {
-                                if (value!.isEmpty ||
-                                    value == null ||
-                                    !value.contains('@') ||
-                                    !value.contains('.')) {
-                                  return '';
-                                }
-                                return null;
-                              },
-                              suffixIcon: Text(''),
-                            ),
-                            // password input field
-                            Text('Password'),
-                            InputField(
-                              iconOnPressed: togglePasswordVisibility,
-                              inputType: TextInputType.visiblePassword,
-                              controller: password,
-                              suffixIcon: Icon(_isHidden == true
-                                  ? Icons.visibility_off
-                                  : Icons.visibility),
-                              obscureText: _isHidden,
-                              hintText: '*********',
-                              validator: (value) {
-                                // validation of user input
-                                if (value!.isEmpty || value == null) {
-                                  return '';
-                                } else if ((value.length <= 5)) {
-                                  return '';
-                                } else if ((value.length >= 10)) {
-                                  return '';
-                                }
-                                return null;
-                              },
-                            ),
-
-                            // password input field
-                            Text('Confirm Password'),
-                            InputField(
-                              iconOnPressed: togglePasswordVisibility,
-                              inputType: TextInputType.visiblePassword,
-                              controller: password,
-                              suffixIcon: Icon(_isHidden == true
-                                  ? Icons.visibility_off
-                                  : Icons.visibility),
-                              obscureText: _isHidden,
-                              hintText: '*********',
-                              validator: (value) {
-                                // validation of user input
-                                if (value!.isEmpty || value == null) {
-                                  return '';
-                                } else if ((value.length <= 5)) {
-                                  return '';
-                                } else if ((value.length >= 10)) {
-                                  return '';
-                                }
-                                return null;
-                              },
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Checkbox(value: true, onChanged: (value) {}),
-                                RichText(
-                                  text: TextSpan(
-                                    style: TextStyle(
-                                      color: Colors.black,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text('First name '),
+                              InputField(
+                                obscureText: false,
+                                hintText: 'Bash',
+                                inputType: TextInputType.name,
+                                controller: firstName,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return '';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              Text('Last name'),
+                              InputField(
+                                obscureText: false,
+                                hintText: 'Adebayo',
+                                inputType: TextInputType.name,
+                                controller: lastName,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return '';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              Text('Email / Phone number'),
+                              InputField(
+                                obscureText: false,
+                                hintText: 'kamushken@gmail.com',
+                                inputType: TextInputType.emailAddress,
+                                controller: email,
+                                validator: (value) {
+                                  if (value!.isEmpty ||
+                                      value == null ||
+                                      !value.contains('@') ||
+                                      !value.contains('.')) {
+                                    return '';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              // password input field
+                              Text('Password'),
+                              InputField(
+                                showIcon: true,
+                                iconOnPressed: togglePasswordVisibility,
+                                inputType: TextInputType.visiblePassword,
+                                controller: password,
+                                suffixIcon: Icon(_isHidden == true
+                                    ? Icons.visibility_off
+                                    : Icons.visibility),
+                                obscureText: _isHidden,
+                                hintText: '*********',
+                                validator: (value) {
+                                  // validation of user input
+                                  if (value!.isEmpty || value == null) {
+                                    return '';
+                                  } else if ((value.length <= 5)) {
+                                    return '';
+                                  } else if ((value.length >= 10)) {
+                                    return '';
+                                  }
+                                  return null;
+                                },
+                              ),
+                        
+                              // password input field
+                              Text('Confirm Password'),
+                              InputField(
+                                showIcon: true,
+                                iconOnPressed: togglePasswordVisibility,
+                                inputType: TextInputType.visiblePassword,
+                                controller: confirmPassword,
+                                suffixIcon: Icon(_isHidden == true
+                                    ? Icons.visibility_off
+                                    : Icons.visibility),
+                                obscureText: _isHidden,
+                                hintText: '*********',
+                                validator: (value) {
+                                  // validation of user input
+                                  if (value!.isEmpty || value == null) {
+                                    return '';
+                                  } else if ((value.length <= 5)) {
+                                    return '';
+                                  } else if ((value.length >= 10)) {
+                                    return '';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Checkbox(value: isChecked, onChanged: (value) {
+                                    setState(() {
+                                      isChecked = value!;
+                                    });
+                                  }),
+                                  RichText(
+                                    text: TextSpan(
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                      ),
+                                      text: 'I agree to the ',
+                                      children: [
+                                        TextSpan(
+                                          text: 'Terms & Condtion\n',
+                                          style: TextStyle(
+                                            color: Colors.blue,
+                                            decoration: TextDecoration.underline,
+                                          ),
+                                        ),
+                                        TextSpan(
+                                          text: 'and & Privacy Policy.',
+                                          style: TextStyle(
+                                            color: Colors.blue,
+                                            decoration: TextDecoration.underline,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    text: 'I agree to the ',
-                                    children: [
-                                      TextSpan(
-                                        text: 'Terms & Condtion\n',
-                                        style: TextStyle(
-                                          color: Colors.blue,
-                                          decoration: TextDecoration.underline,
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: 'and & Privacy Policy.',
-                                        style: TextStyle(
-                                          color: Colors.blue,
-                                          decoration: TextDecoration.underline,
-                                        ),
-                                      ),
-                                    ],
                                   ),
-                                ),
-                                // Text('I agree to the')
-                              ],
-                            )
-                          ],
-                        ),
+                                  // Text('I agree to the')
+                                ],
+                              )
+                            ],
+                          ),
                       ),
                     ),
                   ),
@@ -222,6 +229,12 @@ class _RegisterState extends State<Register> {
                       _globalKey.currentState!.validate();
 
                       //saves form details submitted by users
+                      Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => GetStarted(
+                                      name: firstName.text,
+                                    )));
                       _globalKey.currentState!.save();
                       if (email.text.isEmpty || password.text.isEmpty) {
                         setState(() {

@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:sanlater/component/signup_button.dart';
 import 'package:sanlater/component/text_field.dart';
+import 'package:sanlater/ui/screens/get-started.dart';
 
 import 'register_screen.dart';
 
@@ -85,7 +86,6 @@ class _LoginState extends State<Login> {
                           InputField(
                             obscureText: false,
                             hintText: 'kamushken@gmail.com',
-                            // label: 'E-mail',
                             inputType: TextInputType.emailAddress,
                             controller: email,
                             validator: (value) {
@@ -97,7 +97,6 @@ class _LoginState extends State<Login> {
                               }
                               return null;
                             },
-                            suffixIcon: Text(''),
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 20.0),
@@ -105,6 +104,7 @@ class _LoginState extends State<Login> {
                           ),
                           // password input field
                           InputField(
+                            showIcon: true,
                             iconOnPressed: togglePasswordVisibility,
                             inputType: TextInputType.visiblePassword,
                             controller: password,
@@ -140,6 +140,12 @@ class _LoginState extends State<Login> {
 
                         //saves form details submitted by users
                         _globalKey.currentState!.save();
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => GetStarted(
+                                      name: email.text,
+                                    )));
                         if (email.text.isEmpty || password.text.isEmpty) {
                           setState(() {
                             showSpinner = false;
@@ -160,45 +166,44 @@ class _LoginState extends State<Login> {
                                 "Something went wrong. Please, try again!")));
                       },
                     ),
-
-                    // forgot password button
                     Padding(
-                      padding: const EdgeInsets.only(
-                        top: 25.0,
-                        left: 8.0,
-                        bottom: 8.0,
-                        right: 8.0,
-                      ),
-                      child: TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, 'forgot_password');
-                        },
-                        child: Text(
-                          'Forget your Password?',
-                          style: TextStyle(
-                            color: Colors.black,
-                            // fontSize: 16.0,
+                      padding: const EdgeInsets.only(top:20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          // forgot password button
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, 'forgot_password');
+                            },
+                            child: Text(
+                              'Forget your Password?',
+                              style: TextStyle(
+                                color: Colors.black.withOpacity(0.6),
+                                // fontSize: 16.0,
+                              ),
+                            ),
                           ),
-                        ),
+                          // register account button
+                          TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Register()));
+                            },
+                            child: Text(
+                              'New here?',
+                              style: TextStyle(
+                                color: Colors.black.withOpacity(0.6),
+                                // fontSize: 16.0,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.all(20),
-                    ),
-                    Text('---------------- OR ----------------'),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder:(context)=>Register()));
-                      },
-                      child: Text(
-                        'Register a new account',
-                        style: TextStyle(
-                          color: Colors.black,
-                          // fontSize: 16.0,
-                        ),
-                      ),
-                    ),
-
                     Spacer(
                       flex: 3,
                     ),

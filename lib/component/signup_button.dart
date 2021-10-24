@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sanlater/util.dart/colors.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton( {
@@ -14,22 +15,22 @@ class LoginButton extends StatelessWidget {
       padding: const EdgeInsets.only(top:10.0),
       child: Container(
         width: MediaQuery.of(context).size.width * 1.0,
-        height: MediaQuery.of(context).size.height * 0.06,
-        child: GestureDetector(
-          onTap:onTap,
-          child: Material(
-            color: Colors.blue[600],
-            elevation: 5.0,
+        child: MaterialButton(
+          onPressed:onTap,
+          height: MediaQuery.of(context).size.height * 0.06,
+          color: App.appPrimary,
+          elevation: 5.0,
+          shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5),
-            child: Center(
-              child: Text(
-                mainText,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w900,
-                  fontSize: 18,
-                  ),
-              ),
+          ),
+          child: Center(
+            child: Text(
+              mainText,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w900,
+                fontSize: 18,
+                ),
             ),
           ),
         ),

@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class InputField extends StatelessWidget {
-  // final String? label;
   final int lines;
   final TextInputType? inputType;
-  TextEditingController? controller;
+  final TextEditingController? controller;
   final FormFieldValidator<String>? validator;
   final bool obscureText;
   final String? hintText;
-  VoidCallback? iconOnPressed;
+  final VoidCallback? iconOnPressed;
   final Widget suffixIcon;
+  final bool showIcon;
   final List<TextInputFormatter>? inputFormatters;
   // void Function(String)? onChanged;
   InputField({
     Key? key,
     this.iconOnPressed,
-    required this.suffixIcon,
-    // this.label,
+    this.suffixIcon = const Text(''),
     this.hintText,
+    this.showIcon=false,
     this.lines = 1,
     this.inputType,
     this.validator,
@@ -48,11 +48,10 @@ class InputField extends StatelessWidget {
           errorStyle: TextStyle(
             height: 0,
           ),
-          suffixIcon: TextButton(
+          suffixIcon: showIcon == true?TextButton(
             onPressed: iconOnPressed,
             child: suffixIcon,
-          ),
-          // labelText: "$label",
+          ): null,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),
