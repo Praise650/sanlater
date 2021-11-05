@@ -27,7 +27,7 @@ class _MainScreenState extends State<MainScreen> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
         backgroundColor: App.appPrimary,
-        enableFeedback: true,
+        // enableFeedback: true,
         selectedFontSize: 18,
         selectedItemColor: Colors.orange,
         onTap: (index){
