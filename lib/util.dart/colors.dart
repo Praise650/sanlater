@@ -6,6 +6,7 @@ class App{
   static final appOrange = Colors.redAccent;
   static final appGrey = Colors.grey;
   static final appteal = Colors.teal;
-  static final appBlack = Colors.black;
+  static final appBlack = Color(0xff404143);
   static final transparent = Colors.transparent;
+  static final billCardColor = Color(0xffF4F6FC);
 }

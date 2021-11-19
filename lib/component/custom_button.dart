@@ -6,6 +6,8 @@ class CustomButton extends StatelessWidget {
  final String title;
  final TextStyle? titleStyle;
  final double multiplyingFactor;
+ final bool isIcon;
+ final IconData? icon;
 CustomButton({
   required this.title,
   this.buttonColor,
@@ -13,9 +15,26 @@ CustomButton({
   this.onPressed,
   this.titleStyle,
   this.multiplyingFactor = 1,
+  this.icon,
+  this.isIcon=false,
 });
   @override
   Widget build(BuildContext context) {
+    getChild() {
+      if (isIcon) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(title, style: titleStyle,),
+            Icon(icon, color: Colors.white,),
+          ],
+        );
+      }
+      else{
+        return Text(title, style: titleStyle,);
+      }
+  }
+
     return Container(
       width: MediaQuery.of(context).size.width*multiplyingFactor,
       child: MaterialButton(
@@ -24,7 +43,7 @@ CustomButton({
         elevation: 0,
         color: buttonColor,
         shape: buttonShape,
-        child: Text(title, style: titleStyle,),
+        child: getChild(),
       ),
     );
   }

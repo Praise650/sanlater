@@ -8,6 +8,7 @@ import 'package:sanlater/util.dart/icons.dart';
 import 'homepage/homepage-view.dart';
 
 class MainScreen extends StatefulWidget {
+  static const id = 'main-screen';
   @override
   _MainScreenState createState() => _MainScreenState();
 }

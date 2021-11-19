@@ -44,11 +44,8 @@ class _LoginState extends State<Login> {
                       alignment: Alignment.topLeft,
                       child: GestureDetector(
                         onTap: () {},
-                        child: Material(
-                          color: Colors.white,
-                          elevation: 10,
-                          shape: StadiumBorder(),
-                          child: Icon(Icons.keyboard_arrow_left),
+                        child: RoundedBackButton(
+                          onTap: (){},
                         ),
                       ),
                     ),
@@ -213,5 +210,29 @@ class _LoginState extends State<Login> {
             ),
           ),
         ));
+  }
+}
+
+class RoundedBackButton extends StatelessWidget {
+  final Function()? onTap;
+  const RoundedBackButton({
+    this.onTap,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Material(
+          color: Colors.white,
+          elevation: 10,
+          shape: StadiumBorder(),
+          child: Icon(Icons.keyboard_arrow_left, color: Colors.black,),
+        ),
+      ),
+    );
   }
 }

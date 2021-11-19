@@ -11,6 +11,9 @@ class InputField extends StatelessWidget {
   final VoidCallback? iconOnPressed;
   final Widget suffixIcon;
   final bool showIcon;
+  final bool enabled;
+  final InputBorder? border;
+  final bool readOnly;
   final List<TextInputFormatter>? inputFormatters;
   // void Function(String)? onChanged;
   InputField({
@@ -24,8 +27,11 @@ class InputField extends StatelessWidget {
     this.validator,
     // this.onChanged,
     this.inputFormatters,
-    required this.obscureText,
-    required this.controller,
+    this.obscureText=false,
+   this.controller,
+    this.enabled = true,
+    this.border,
+    this.readOnly=false,
   }) : super(key: key);
 
   @override
@@ -33,6 +39,8 @@ class InputField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top:8.0,bottom: 8.0),
       child: TextFormField(
+        readOnly: readOnly,
+        enabled: enabled,
         autovalidateMode: AutovalidateMode.onUserInteraction, 
         validator: validator,
         obscureText: obscureText,
@@ -52,9 +60,7 @@ class InputField extends StatelessWidget {
             onPressed: iconOnPressed,
             child: suffixIcon,
           ): null,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
+          border: border,
         ),
         onSaved: (String? value){
           String control = controller.toString();

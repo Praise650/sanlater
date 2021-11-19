@@ -5,6 +5,7 @@ import 'package:sanlater/component/style.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingScreen extends StatefulWidget {
+  static const id = 'onboarding';
   @override
   _OnboardingScreenState createState() => _OnboardingScreenState();
 }

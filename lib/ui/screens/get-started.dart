@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:sanlater/component/style.dart';
 
 class GetStarted extends StatelessWidget {
+  static const id = 'get-started';
   GetStarted({this.name});
-  String? name;
+  final String? name;
 
   @override
   Widget build(BuildContext context) {

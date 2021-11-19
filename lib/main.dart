@@ -3,6 +3,10 @@ import 'package:sanlater/ui/screens/get-started.dart';
 import 'package:sanlater/ui/screens/homepage/homepage-view.dart';
 import 'package:sanlater/ui/screens/main-screen.dart';
 import 'package:sanlater/ui/screens/my_cart_screen.dart';
+import 'package:sanlater/ui/screens/paybills_screen.dart';
+import 'package:sanlater/ui/screens/personal_information_screen.dart';
+import 'package:sanlater/ui/screens/proof_of_identity_screen.dart';
+import 'package:sanlater/ui/screens/verify_identity.dart';
 import 'ui/screens/onboarding.dart';
 import 'ui/screens/splash_screen.dart';
 
@@ -20,15 +24,19 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: 'my_cart_screen',
+      initialRoute: ProofOfIdentity.id,
       // home: CounterApp(),
       routes: {
-        'my_cart_screen':(context)=>MyCartScreen(),
-        'splash_screen':(context)=>SplashScreen(),
-        'onboarding': (context)=>OnboardingScreen(),
-        'get-started':(context)=>GetStarted(),
-        'homepage':(context)=>HomePage(),
-        'main-screen':(context)=>MainScreen(),
+        SplashScreen.id:(context)=>SplashScreen(),
+        OnboardingScreen.id: (context)=>OnboardingScreen(),
+        GetStarted.id:(context)=>GetStarted(),
+        HomePage.id :(context)=>HomePage(),
+        MainScreen.id:(context)=>MainScreen(),
+        MyCartScreen.id:(context)=>MyCartScreen(),
+        PayBillsScreen.id: (context)=>PayBillsScreen(),
+        VerifyDetailsScreen.id :(context)=>VerifyDetailsScreen(),
+        PersonalInformationScreen.id : (context)=> PersonalInformationScreen(),
+        ProofOfIdentity.id : (context)=> ProofOfIdentity(),
       },
     );
   }

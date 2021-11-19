@@ -4,6 +4,7 @@ import '../profile.dart';
 import '../wallet.dart';
 
 class HomePage extends StatefulWidget {
+  static const id = 'homepage';
   const HomePage({Key? key}) : super(key: key);
 
   @override

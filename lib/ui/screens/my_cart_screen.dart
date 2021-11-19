@@ -6,6 +6,7 @@ import 'package:sanlater/ui/screens/myCart_viewModel.dart';
 import 'package:sanlater/util.dart/colors.dart';
 import 'package:sanlater/util.dart/text_styles.dart';
 class MyCartScreen extends StatelessWidget {
+  static const id = 'my_cart_screen';
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
