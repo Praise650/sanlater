@@ -6,6 +6,8 @@ import 'package:sanlater/ui/screens/my_cart_screen.dart';
 import 'package:sanlater/ui/screens/paybills_screen.dart';
 import 'package:sanlater/ui/screens/personal_information_screen.dart';
 import 'package:sanlater/ui/screens/proof_of_identity_screen.dart';
+import 'package:sanlater/ui/screens/request_approved_screen.dart';
+import 'package:sanlater/ui/screens/request_received_screen.dart';
 import 'package:sanlater/ui/screens/verify_identity.dart';
 import 'ui/screens/onboarding.dart';
 import 'ui/screens/splash_screen.dart';
@@ -24,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: ProofOfIdentity.id,
+      initialRoute: RequestReceivedScreen.id,
       // home: CounterApp(),
       routes: {
         SplashScreen.id:(context)=>SplashScreen(),
@@ -37,6 +39,8 @@ class MyApp extends StatelessWidget {
         VerifyDetailsScreen.id :(context)=>VerifyDetailsScreen(),
         PersonalInformationScreen.id : (context)=> PersonalInformationScreen(),
         ProofOfIdentity.id : (context)=> ProofOfIdentity(),
+        RequestApprovedScreen.id : (context)=> RequestApprovedScreen(),
+        RequestReceivedScreen.id : (context)=> RequestReceivedScreen(),
       },
     );
   }

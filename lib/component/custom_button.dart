@@ -26,7 +26,10 @@ CustomButton({
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(title, style: titleStyle,),
-            Icon(icon, color: Colors.white,),
+            Padding(
+              padding: const EdgeInsets.only(left:10.0),
+              child: Icon(icon, color: Colors.white,),
+            ),
           ],
         );
       }
