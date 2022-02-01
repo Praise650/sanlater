@@ -58,7 +58,7 @@ class _SplashScreenState extends State<SplashScreen>
           Center(
             child: Opacity(
               opacity: animationController!.value,
-              child: Image.asset("images/splash_logo.png", height: 300),
+              child: Image.asset("images/splash_logo.png", height: 100,width: 200,),
             ),
           )
         ],

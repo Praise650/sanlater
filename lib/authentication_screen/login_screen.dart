@@ -4,6 +4,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:sanlater/component/signup_button.dart';
 import 'package:sanlater/component/text_field.dart';
 import 'package:sanlater/ui/screens/get-started.dart';
+import 'package:sanlater/ui/screens/main-screen.dart';
 
 import 'register_screen.dart';
 
@@ -143,9 +144,7 @@ class _LoginState extends State<Login> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => GetStarted(
-                                      name: email.text,
-                                    )));
+                                builder: (context) => MainScreen()));
                         if (email.text.isEmpty || password.text.isEmpty) {
                           setState(() {
                             showSpinner = false;
@@ -167,7 +166,7 @@ class _LoginState extends State<Login> {
                       },
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top:20.0),
+                      padding: const EdgeInsets.only(top: 20.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -204,9 +203,7 @@ class _LoginState extends State<Login> {
                         ],
                       ),
                     ),
-                    Spacer(
-                      flex: 3,
-                    ),
+                    Spacer(flex: 3),
                   ],
                 ),
               ),

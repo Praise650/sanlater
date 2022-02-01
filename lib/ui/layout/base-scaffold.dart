@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:sanlater/util.dart/colors.dart';
+import 'package:sanlater/util/colors.dart';
 
 class BaseScaffold extends StatelessWidget {
   final Widget body;

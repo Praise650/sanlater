@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:sanlater/util/colors.dart';
 
 class AuthButton extends StatelessWidget {
   const AuthButton({
     Key? key,
     required this.onPressed,
-    this.color = Colors.blue,
+    this.color= const Color(0xff4762F1),
     this.showBorder = true,
     this.textone = 'Log in',
     this.widthMultiplyingFactor = 1,

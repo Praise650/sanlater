@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sanlater/util.dart/colors.dart';
+import 'package:sanlater/util/colors.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton( {

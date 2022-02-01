@@ -4,6 +4,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:sanlater/component/signup_button.dart';
 import 'package:sanlater/component/text_field.dart';
 import 'package:sanlater/ui/screens/get-started.dart';
+import 'package:sanlater/ui/screens/phone_auth/phone_screen.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -232,9 +233,7 @@ class _RegisterState extends State<Register> {
                       Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => GetStarted(
-                                      name: firstName.text,
-                                    )));
+                                builder: (context) => PhoneNumberAuthScreen()));
                       _globalKey.currentState!.save();
                       if (email.text.isEmpty || password.text.isEmpty) {
                         setState(() {

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sanlater/component/style.dart';
+import 'package:sanlater/ui/screens/main-screen.dart';
+import 'package:sanlater/util/assets.dart';
+import 'package:sanlater/util/colors.dart';
 
 class GetStarted extends StatelessWidget {
   GetStarted({this.name});
@@ -16,68 +19,41 @@ class GetStarted extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Spacer(
-                flex: 7,
-              ),
+              Spacer(flex: 7),
               Container(
                 child: Image(
-                  image: AssetImage('images/third_onboarding.png'),
+                  image: AssetImage(AssetsImages.welcome),
                   width: 400,
                   height: 250,
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 10),
               Text(
                 'Hi $name,\n'
                 'Welcome on-board',
                 textAlign: TextAlign.center,
                 style: Styles.gtextStyle,
               ),
-              SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: 20),
               Text(
-                'We have got you covered. Your\n'
-                'account has been credited with\n'
-                '5000 for you to purchase\n'
-                'whatever you want. Payback\n'
-                'later at your convinience',
+                'We have got you covered.\n'
+                'You can purchase whatever\n'
+                'you want and payback\n'
+                'later in instalment for six week.',
                 textAlign: TextAlign.center,
                 style: Styles.gbodyTextStyle,
               ),
-              Spacer(
-                flex: 4,
-              ),
+              Spacer(flex: 4),
               Padding(
                 padding: const EdgeInsets.all(15.0),
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.07,
-                  width: MediaQuery.of(context).size.width,
-                  child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(context, 'main-screen');
-                      },
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text('Get Started'),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Icon(Icons.arrow_forward_sharp,size: 20,),
-                          ],
-                        ),
-                      )),
+                child: CustomIconButton(
+                  btnText: 'Get Started',
+                  onPressed: () {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>MainScreen()));
+                  }
                 ),
               ),
-              Spacer(
-                flex: 1,
-              ),
+              Spacer(flex: 1),
             ],
           ),
         ),
@@ -85,28 +61,39 @@ class GetStarted extends StatelessWidget {
     );
   }
 }
-            // GestureDetector(
-            //   child: Container(
-            //     width: MediaQuery.of(context).size.width * 0.6,
-            //     height: MediaQuery.of(context).size.height * 0.06,
-            //     decoration: BoxDecoration(
-            //       color: Colors.white,
-            //       shape: BoxShape.rectangle,
-            //       borderRadius: BorderRadius.circular(10.0),
-            //       border: Border.all(
-            //           width: 2, color: Colors.red, style: BorderStyle.solid),
-            //     ),
-            //     child: Center(
-            //       child: Text(
-            //         'Get Started'.toUpperCase(),
-            //         style: GoogleFonts.openSans(
-            //           color: Color(0xFFD12424),
-            //           fontWeight: FontWeight.w700,
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // onTap: () {
-            //   Navigator.pushReplacementNamed(context, 'become_an_ambassador');
-            // },
-            // ),
+
+class CustomIconButton extends StatelessWidget {
+  const CustomIconButton(
+      {Key? key,
+      this.height = 0.07,
+      required this.btnText,
+      required this.onPressed})
+      : super(key: key);
+  final Function()? onPressed;
+  final double height;
+  final String btnText;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height * height,
+      width: MediaQuery.of(context).size.width,
+      child: ElevatedButton(
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(App.appPrimary)),
+          onPressed:  onPressed,
+          child: Container(
+            alignment: Alignment.center,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(btnText),
+                SizedBox(width: 20),
+                Icon(Icons.east_rounded, size: 20),
+              ],
+            ),
+          )),
+    );
+  }
+}

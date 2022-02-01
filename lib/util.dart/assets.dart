@@ -1,3 +1,0 @@
-class AssetsImages{
-  // static final 
-}
