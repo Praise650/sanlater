@@ -1,0 +1,1 @@
+enum Payment {DebitCard, ECard,}
