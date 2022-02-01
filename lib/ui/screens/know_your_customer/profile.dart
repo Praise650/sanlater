@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sanlater/ui/layout/sign_out_screen.dart';
-import 'package:sanlater/ui/screens/know_your_customer/personal_information_screen.dart';
 import 'package:sanlater/ui/screens/know_your_customer/verify_identity.dart';
-import 'package:sanlater/ui/screens/request_fund/request_fund_review.dart';
+import 'package:sanlater/ui/screens/request_fund/request_received_screen.dart';
 import 'package:sanlater/util/assets.dart';
 import 'package:sanlater/util/icons.dart';
 import 'package:sanlater/util/text_styles.dart';
@@ -45,7 +44,7 @@ class Profile extends StatelessWidget {
                         onTap: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => RequestFund())),
+                                builder: (context) => RequestReceivedScreen())),
                         child: CircularWidget(
                           icon: Icons.download,
                           text: 'Request\nFund',
