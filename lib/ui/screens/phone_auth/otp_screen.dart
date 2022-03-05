@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pin_code_text_field/pin_code_text_field.dart';
 import 'package:sanlater/component/signup_button.dart';
+import 'package:sanlater/core/data/services/api_urls.dart';
+import 'package:sanlater/core/data/services/auth/auth_service.dart';
 import 'package:sanlater/ui/screens/phone_auth/phone_screen.dart';
 import 'package:sanlater/util/colors.dart';
 
@@ -152,13 +154,14 @@ class OtpPage extends StatefulWidget {
 
 class _OtpPageState extends State<OtpPage> {
   int _isResendAgain = 0;
+  TextEditingController otpCode = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 43),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 43),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -167,14 +170,14 @@ class _OtpPageState extends State<OtpPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     GestureDetector(
-                          onTap: () {},
-                          child: Material(
-                            color: Colors.white,
-                            elevation: 10,
-                            shape: StadiumBorder(),
-                            child: Icon(Icons.keyboard_arrow_left),
-                          ),
-                        ),
+                      onTap: () {},
+                      child: Material(
+                        color: Colors.white,
+                        elevation: 10,
+                        shape: StadiumBorder(),
+                        child: Icon(Icons.keyboard_arrow_left),
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(top: 25.0, bottom: 10),
                       child: Text(
@@ -189,31 +192,30 @@ class _OtpPageState extends State<OtpPage> {
                         ),
                       ),
                     ),
-                    Text("We have sent your OTP to number  ${widget.phoneNumber}"),
+                    Text(
+                        "We have sent your OTP to number  ${widget.phoneNumber}"),
                     Align(
                       alignment: Alignment.center,
                       child: Padding(
-                        padding: const EdgeInsets.only(top: 65.0, bottom: 27),
-                        child: PinCodeTextField(
-                          pinBoxHeight: 70,
-                          pinBoxWidth: 70,
-                          pinBoxRadius: 8,
-                          hasUnderline: false,
-                          maxLength: 4,
-                          defaultBorderColor: Colors.transparent,
-                          keyboardType: TextInputType.number,
-                          // pinBoxColor: App.appPrimary,
-                        ),
-                      ),
+                          padding: const EdgeInsets.only(top: 65.0, bottom: 27),
+                          child: PinCodeTextField(
+                            controller: otpCode,
+                              pinBoxHeight: 70,
+                              pinBoxWidth: 70,
+                              pinBoxRadius: 8,
+                              hasUnderline: false,
+                              maxLength: 4,
+                              defaultBorderColor: Colors.transparent,
+                              keyboardType: TextInputType.number)),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 20.0),
                       child: GestureDetector(
-                      onTap: () => Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => PhoneNumberAuthScreen())),
-                      child: Text('Change phone number',style: TextStyle(color: App.red),)),
+                          onTap: () => Navigator.pop(context),
+                          child: Text(
+                            'Change phone number',
+                            style: TextStyle(color: App.red),
+                          )),
                     ),
                   ],
                 ),
@@ -223,6 +225,7 @@ class _OtpPageState extends State<OtpPage> {
                     Text('Resend Code in ${_isResendAgain}s'),
                     LoginButton(
                         onTap: () {
+                          AuthService().verifyOtp(otpCode: otpCode.text);
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(

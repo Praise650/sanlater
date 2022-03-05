@@ -29,8 +29,8 @@ class _RequestFundState extends State<RequestFund> {
                 'your request. Please be patient.'),
             Padding(
                 padding: const EdgeInsets.only(top: 24.0),
-                child:
-                    CustomIconButton(btnText: 'Back to home', onPressed: () {}))
+                child: CustomIconButton(
+                    btnText: 'Proceed to Wallet', onPressed: () {}))
           ],
         ),
       ),

@@ -74,7 +74,7 @@ class RequestApprovedScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 30.0),
               child: CustomButton(
-                title: 'Proceed to Wallet',
+                title: 'Back to home',
                 buttonShape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),

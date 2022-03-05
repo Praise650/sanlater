@@ -22,16 +22,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (context) => ShowDialogData(),
-        ),
+        ChangeNotifierProvider(create: (context) => ShowDialogData()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'San Later',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: ThemeData(primarySwatch: Colors.blue),
         initialRoute: 'splash_screen',
         routes: {
           'splash_screen': (context) => SplashScreen(),
