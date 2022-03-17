@@ -228,7 +228,6 @@ class _RegisterState extends State<Register> {
                           if (model.formKey.currentState!.validate()) {
                             //saves form details submitted by users
                             model.formKey.currentState!.save();
-                            model.register(context);
                             Get.offAll(() => PhoneNumberAuthScreen());
                           }
                           //   else if (model.email.text.isEmpty ||

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:sanlater/ui/screens/get-started.dart';
 import 'package:sanlater/ui/screens/homepage/homepage-view.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => ShowDialogData()),
       ],
-      child: MaterialApp(
+      child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'San Later',
         theme: ThemeData(primarySwatch: Colors.blue),

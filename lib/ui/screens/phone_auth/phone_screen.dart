@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:sanlater/authentication_screen/view_model/auth_view_model.dart';
 import 'package:sanlater/component/signup_button.dart';
@@ -85,11 +86,12 @@ class _PhoneNumberAuthScreenState extends State<PhoneNumberAuthScreen> {
                                   LoginButton(
                                       mainText: 'Proceed',
                                       onTap: () {
-                                        if (model.formKey.currentState!
-                                            .validate()) {
-                                          model.formKey.currentState!.save();
-                                          model.register(context);
-                                        }
+                                        // if (model.formKey.currentState!
+                                        //     .validate()) {
+                                        //   model.formKey.currentState!.save();
+                                          // model.register(context);
+                                          Get.to(OtpPage());
+                                        // }
                                       }),
                                 ],
                               ),
