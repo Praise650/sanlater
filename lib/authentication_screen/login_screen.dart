@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:sanlater/authentication_screen/view_model/auth_model.dart';
+import 'package:sanlater/authentication_screen/view_model/auth_view_model.dart';
 import 'package:sanlater/component/signup_button.dart';
 import 'package:sanlater/component/text_field.dart';
 import 'package:sanlater/ui/screens/main-screen.dart';
@@ -132,17 +132,13 @@ class _LoginState extends State<Login> {
                           ),
 
                           LoginButton(
-                              mainText: 'Log In',
-                              onTap: () async {
-                                // validates form details submitted by users
-                                // if (model.formKey.currentState!.validate()) {
-                                //   //saves form details submitted by users
-                                //   model.formKey.currentState!.save();
-                                //   // model.initLogin();
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => MainScreen()));
+                            mainText: 'Log In',
+                            onTap: () async {
+                              // validates form details submitted by users
+                              if (model.formKey.currentState!.validate()) {
+                                //saves form details submitted by users
+                                model.formKey.currentState!.save();
+                                model.initLogin(context);
                               }
                               // if (email.text.isEmpty || password.text.isEmpty) {
                               //   setState(() {
@@ -163,8 +159,8 @@ class _LoginState extends State<Login> {
                               // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               //     content: Text(
                               //         "Something went wrong. Please, try again!")));
-                              // },
-                              ),
+                            },
+                          ),
                           Padding(
                             padding: const EdgeInsets.only(top: 20.0),
                             child: Row(

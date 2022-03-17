@@ -19,37 +19,33 @@ class AppFont {
 }
 
 class AppResponse {
-  static showSuccess(String message,BuildContext context) {
-    ScaffoldMessenger.of(context)
-          .showSnackBar(
-            SnackBar(
-              content: Text('Success'),
-              backgroundColor: Colors.green.withOpacity(.4),
-              ));
+  static showSuccess(String message, BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(message),
+      backgroundColor: Colors.green.withOpacity(.4),
+    ));
   }
 
   static showError(dynamic e, BuildContext context) {
     assert(context != null);
     if (e is SocketException) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(
-            SnackBar(
-              content: Text('Error, Unable To Connect At This Time'),
-              backgroundColor: Colors.red.withOpacity(.4),
-              ));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Error, Unable To Connect At This Time'),
+        backgroundColor: Colors.red.withOpacity(.4),
+      ));
       return;
     }
-  //   if (e is DioError) {
-  //     try {
-  //       e.response!.statusCode != null
-  //           ? Get.snackbar("Error", '${e.response!.data['message']}',
-  //               backgroundColor: Colors.red.withOpacity(.4))
-  //           : Get.snackbar('Error', "Unable To Connect At This Time",
-  //               backgroundColor: Colors.red.withOpacity(.4));
-  //     } catch (e) {
-  //       debugPrint(e.toString());
-  //     }
-  //   }
+    //   if (e is DioError) {
+    //     try {
+    //       e.response!.statusCode != null
+    //           ? Get.snackbar("Error", '${e.response!.data['message']}',
+    //               backgroundColor: Colors.red.withOpacity(.4))
+    //           : Get.snackbar('Error', "Unable To Connect At This Time",
+    //               backgroundColor: Colors.red.withOpacity(.4));
+    //     } catch (e) {
+    //       debugPrint(e.toString());
+    //     }
+    //   }
   }
 }
 

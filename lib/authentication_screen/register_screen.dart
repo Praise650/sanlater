@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:sanlater/authentication_screen/view_model/auth_model.dart';
+import 'package:sanlater/authentication_screen/view_model/auth_view_model.dart';
 import 'package:sanlater/component/signup_button.dart';
 import 'package:sanlater/component/text_field.dart';
 import 'package:sanlater/ui/screens/phone_auth/phone_screen.dart';
@@ -224,17 +226,10 @@ class _RegisterState extends State<Register> {
                         onTap: () async {
                           // validates form details submitted by users
                           if (model.formKey.currentState!.validate()) {
-                            model.formKey.currentState!.save();
                             //saves form details submitted by users
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => PhoneNumberAuthScreen(
-                                        email: model.emailController.text,
-                                        confirmPassword:
-                                            model.confirmPassword.text,
-                                        firstName: model.firstName.text,
-                                        lastName: model.lastName.text)));
+                            model.formKey.currentState!.save();
+                            model.register(context);
+                            Get.offAll(() => PhoneNumberAuthScreen());
                           }
                           //   else if (model.email.text.isEmpty ||
                           //       confirmPassword.text.isEmpty) {

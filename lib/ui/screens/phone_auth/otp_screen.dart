@@ -1,18 +1,13 @@
-// import 'dart:async';
-
-// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pin_code_text_field/pin_code_text_field.dart';
+import 'package:sanlater/authentication_screen/view_model/auth_view_model.dart';
 import 'package:sanlater/component/signup_button.dart';
-import 'package:sanlater/core/data/services/api_urls.dart';
-import 'package:sanlater/core/data/services/auth/auth_service.dart';
-import 'package:sanlater/ui/screens/phone_auth/phone_screen.dart';
 import 'package:sanlater/util/colors.dart';
+import 'package:stacked/stacked.dart';
 
 import '../get-started.dart';
-
-// import 'phone_screen.dart';
 
 //   bool _isResendAgain = false;
 //   bool _isVerified = false;
@@ -144,11 +139,6 @@ import '../get-started.dart';
 // }
 
 class OtpPage extends StatefulWidget {
-  final String? phoneNumber;
-  final String? firstName;
-  const OtpPage({Key? key, this.phoneNumber, this.firstName});
-
-  @override
   _OtpPageState createState() => _OtpPageState();
 }
 
@@ -157,85 +147,86 @@ class _OtpPageState extends State<OtpPage> {
   TextEditingController otpCode = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 43),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    GestureDetector(
-                      onTap: () {},
-                      child: Material(
-                        color: Colors.white,
-                        elevation: 10,
-                        shape: StadiumBorder(),
-                        child: Icon(Icons.keyboard_arrow_left),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 25.0, bottom: 10),
-                      child: Text(
-                        'Enter the OTP sent to\n'
-                        'your phone number\n'
-                        'for verification',
-                        style: GoogleFonts.openSans(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 30.0,
-                          height: 1.0,
+    return ViewModelBuilder<AuthModel>.reactive(
+      viewModelBuilder: () => AuthModel(),
+      builder: (context, model, _) => Scaffold(
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 43),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      GestureDetector(
+                        onTap: () {},
+                        child: Material(
+                          color: Colors.white,
+                          elevation: 10,
+                          shape: StadiumBorder(),
+                          child: Icon(Icons.keyboard_arrow_left),
                         ),
                       ),
-                    ),
-                    Text(
-                        "We have sent your OTP to number  ${widget.phoneNumber}"),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Padding(
-                          padding: const EdgeInsets.only(top: 65.0, bottom: 27),
-                          child: PinCodeTextField(
-                            controller: otpCode,
-                              pinBoxHeight: 70,
-                              pinBoxWidth: 70,
-                              pinBoxRadius: 8,
-                              hasUnderline: false,
-                              maxLength: 4,
-                              defaultBorderColor: Colors.transparent,
-                              keyboardType: TextInputType.number)),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 20.0),
-                      child: GestureDetector(
-                          onTap: () => Navigator.pop(context),
-                          child: Text(
-                            'Change phone number',
-                            style: TextStyle(color: App.red),
-                          )),
-                    ),
-                  ],
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Resend Code in ${_isResendAgain}s'),
-                    LoginButton(
-                        onTap: () {
-                          AuthService().verifyOtp(otpCode: otpCode.text);
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      GetStarted(name: widget.firstName)));
-                        },
-                        mainText: 'Finish')
-                  ],
-                )
-              ],
+                      Padding(
+                        padding: const EdgeInsets.only(top: 25.0, bottom: 10),
+                        child: Text(
+                          'Enter the OTP sent to\n'
+                          'your phone number\n'
+                          'for verification',
+                          style: GoogleFonts.openSans(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 30.0,
+                            height: 1.0,
+                          ),
+                        ),
+                      ),
+                      Text(
+                          "We have sent your OTP to number  ${model.phoneNumber.text}"),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Padding(
+                            padding:
+                                const EdgeInsets.only(top: 65.0, bottom: 27),
+                            child: PinCodeTextField(
+                                controller: otpCode,
+                                pinBoxHeight: 70,
+                                pinBoxWidth: 70,
+                                pinBoxRadius: 8,
+                                hasUnderline: false,
+                                maxLength: 4,
+                                defaultBorderColor: Colors.transparent,
+                                keyboardType: TextInputType.number)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20.0),
+                        child: GestureDetector(
+                            onTap: () => Navigator.pop(context),
+                            child: Text(
+                              'Change phone number',
+                              style: TextStyle(color: App.red),
+                            )),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Resend Code in ${_isResendAgain}s'),
+                      LoginButton(
+                          onTap: () {
+                            model.verifyOtp(context);
+                            Get.offAll(
+                                () => GetStarted(name: model.firstName.text));
+                          },
+                          mainText: 'Finish')
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ),
