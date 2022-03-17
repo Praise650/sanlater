@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:sanlater/authentication_screen/view_model/auth_model.dart';
+import 'package:sanlater/authentication_screen/view_model/auth_view_model.dart';
 import 'package:sanlater/component/signup_button.dart';
 import 'package:sanlater/util/text_styles.dart';
 import 'package:stacked/stacked.dart';
@@ -8,13 +8,6 @@ import 'package:stacked/stacked.dart';
 import 'otp_screen.dart';
 
 class PhoneNumberAuthScreen extends StatefulWidget {
-  final String? firstName;
-  final String? email;
-  final String? lastName;
-  final String? confirmPassword;
-  const PhoneNumberAuthScreen(
-      {this.firstName, this.email, this.lastName, this.confirmPassword});
-
   @override
   _PhoneNumberAuthScreenState createState() => _PhoneNumberAuthScreenState();
 }
@@ -95,16 +88,7 @@ class _PhoneNumberAuthScreenState extends State<PhoneNumberAuthScreen> {
                                         if (model.formKey.currentState!
                                             .validate()) {
                                           model.formKey.currentState!.save();
-                                          model.register();
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) => OtpPage(
-                                                        phoneNumber: model
-                                                            .phoneNumber.text,
-                                                        firstName:
-                                                            widget.firstName,
-                                                      )));
+                                          model.register(context);
                                         }
                                       }),
                                 ],
